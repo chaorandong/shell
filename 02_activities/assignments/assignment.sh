@@ -11,6 +11,7 @@ set -x
 
 mkdir analysis output
 touch README.md
+echo "# Project Name: DSI Consulting Inc." > README.md
 touch analysis/main.py
 
 # download client data
@@ -21,21 +22,44 @@ unzip rawdata.zip
 # Complete assignment here
 
 # 1. Create a directory named data
+mkdir data
 
 # 2. Move the ./rawdata directory to ./data/raw
+mv ./rawdata ./data/raw
 
 # 3. List the contents of the ./data/raw directory
+ls ./data/raw
 
 # 4. In ./data/processed, create the following directories: server_logs, user_logs, and event_logs
+# Navigate to the data directory
+cd ./data 
+# Create a directory named processed
+mkdir processed 
+# Navigate to the processed directory
+cd ./processed 
+# Create the three directories
+mkdir server_logs user_logs event_logs
+# Navigate back to the original directory
+cd ../..
+
 
 # 5. Copy all server log files (files with "server" in the name AND a .log extension) from ./data/raw to ./data/processed/server_logs
+cp ./data/raw/server*.log ./data/processed/server_logs
 
 # 6. Repeat the above step for user logs and event logs
+# For user logs
+cp ./data/raw/user*.log ./data/processed/user_logs
+# For event logs
+cp ./data/raw/event*.log ./data/processed/event_logs
 
 # 7. For user privacy, remove all files containing IP addresses (files with "ipaddr" in the filename) from ./data/raw and ./data/processed/user_logs
+# For raw directory
+rm ./data/raw/*ipaddr*
+# For user_logs directory
+rm ./data/processed/user_logs/*ipaddr*
 
 # 8. Create a file named ./data/inventory.txt that lists all the files in the subfolders of ./data/processed
-
+ls -R ./data/processed > ./data/inventory.txt
 
 
 ###########################################
